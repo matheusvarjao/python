@@ -1,0 +1,217 @@
+#Trabalho feito por:
+#Matheus Alonso Varjao
+#Tia: 32334001
+#Victor Maki Tarcha
+#Tia: 32379943
+
+import math
+
+#Parte A
+
+#Contagem das variáveis
+pontos = 0
+prim_qua = 0
+seg_qua = 0
+ter_qua = 0
+quar_qua = 0
+eixo = 0
+ori = 0
+
+#Entrada com pedido de origem do X, do Y e o número de pontos a serem lidos
+origem_x = int(input("Digite o valor de x para origem: "))
+origem_y = int(input("Digite o valor de y para origem: "))
+n = int(input("Insira o total de pontos a serem lidos: "))
+    
+#Estrutura de repetição For para que os comandos sejam repetidos de acordo com o n° de pontos
+for pontos in range(1, n + 1, 1):
+  #Entrada dos valores do ponto
+  x = int(input("Digite um valor de x: "))
+  y = int(input("Digite um valor de y: "))
+
+  #Cálculo das distância euclidiana
+  dist_euclid = math.sqrt(x * x + y *y)
+
+  #estrutura condicional para definir o ponto de menor distância
+  if pontos == 1:
+    menor_dist = dist_euclid
+    xMenor = x
+    yMenor = y
+    maior_dist = dist_euclid
+    xMaior = x
+    yMaior = y
+      
+  print(dist_euclid)
+
+  if dist_euclid < menor_dist:
+    menor_dist = dist_euclid
+    xMenor = x
+    yMenor = y
+    
+
+  if dist_euclid > maior_dist:
+    maior_dist = dist_euclid
+    xMaior = x
+    yMaior = y
+    
+  print("\n")  
+
+  #Estrutura condicional para definir em qual posição do plano o ponto está, juntamente com o print do ponto e a soma na contagem  
+  if x > 0 and y > 0:
+    print(f"O ponto ({x}, {y}) está no 1° quadrante")
+    prim_qua = prim_qua + 1
+    
+  elif x < 0 and y > 0:
+    print(f"O ponto ({x}, {y}) está no 2° quadrante")
+    seg_qua = seg_qua + 1
+ 
+  elif x < 0 and y < 0:
+    print(f"O ponto ({x}, {y}) está no 3° quadrante")
+    ter_qua = ter_qua + 1
+  
+  elif x > 0 and y < 0:
+    print(f"O ponto ({x}, {y}) está no 4° quadrante")
+    quar_qua = quar_qua + 1
+    
+    
+  elif x == origem_x and y != origem_y:
+    print(f"O ponto ({x}, {y}) está no eixo das abscissas")
+    eixo = eixo + 1
+
+  elif y == origem_y and x != origem_x:
+    print(f"O ponto ({x}, {y}) está no eixo das ordenadas")
+    eixo = eixo + 1
+
+  elif x == origem_x and y == origem_y:
+    print(f"O ponto ({x}, {y}) está na origem") 
+    ori = ori + 1
+
+  print("\n")
+
+#Saídas
+print(f"\nO ponto({xMenor}, {yMenor}) é o menos distante da origem")
+print(f"A menor distância Euclidiana  deste ponto é de:{menor_dist} ")
+print(f"O ponto({xMaior}, {yMaior}) é o mais distante da origem")
+print(f"A maior distância Euclidiana  deste ponto é de:{maior_dist} ")
+print(f"Existem {prim_qua} ponto(s) no 1° quadrante")
+print(f"Existem {seg_qua} ponto(s) no 2° quadrante")
+print(f"Existem {ter_qua} ponto(s) no 3° quadrante")
+print(f"Existem {quar_qua} ponto(s) no 4° quadrante") 
+print(f"Existem {eixo} ponto(s) no eixo das abscissas ou ordendas") 
+print(f"Existem {ori} ponto(s) na origem") 
+
+print("\n")
+#Parte B
+
+#Definição de como funcionará o padrão do robô
+mov_x = [0, 1, 1]
+mov_y = [1, 0, 0]
+
+#Entradas com o valores X e Y iniciais do robô e o tempo de duração da caminhada
+x_robo = int(input("Digite a posição inicial (x) do robô: "))
+y_robo = int(input("Digite a osição inicial (y) do robô: "))
+temp_duracao = int(input("Coloque o tempo de duração da Caminhada do robô: "))
+
+#Contagem do tempo e definindo o false para quebra da repetição em while
+tempo = 0
+fim = False
+
+#Estrutura de repetição for dentro do while para repetir um padrão definido de movimento do robô dentro de um número indefinido de movimentações
+while not fim:
+    for i in range(3):
+        x_robo += mov_x[i]
+        y_robo += mov_y[i]
+        tempo += 1
+        fim = (tempo >= temp_duracao)
+        if fim:
+            break
+
+print("\n")
+
+#Saída com aposição final do robô
+print(f'A posição final do robô é ({x_robo}, {y_robo})')
+
+
+
+
+'''Digite o valor de x para origem: 1
+Digite o valor de y para origem: -3
+Insira o total de pontos a serem lidos: 8
+Digite um valor de x: 5
+Digite um valor de y: 4
+6.4031242374328485
+
+
+O ponto (5, 4) está no 1° quadrante
+
+
+Digite um valor de x: 2
+Digite um valor de y: 3
+3.605551275463989
+
+
+O ponto (2, 3) está no 1° quadrante
+
+
+Digite um valor de x: -4
+Digite um valor de y: 3
+5.0
+
+
+O ponto (-4, 3) está no 2° quadrante
+
+
+Digite um valor de x: -3
+Digite um valor de y: 1
+3.1622776601683795
+
+
+O ponto (-3, 1) está no 2° quadrante
+
+
+Digite um valor de x: -2
+Digite um valor de y: -1
+2.23606797749979
+
+
+O ponto (-2, -1) está no 3° quadrante
+
+
+Digite um valor de x: -5
+Digite um valor de y: -3
+5.830951894845301
+
+
+O ponto (-5, -3) está no 3° quadrante
+
+
+Digite um valor de x: 4
+Digite um valor de y: -3
+5.0
+
+
+O ponto (4, -3) está no 4° quadrante
+
+
+Digite um valor de x: 2
+Digite um valor de y: -4
+4.47213595499958
+
+
+O ponto (2, -4) está no 4° quadrante
+
+
+
+O ponto(-2, -1) é o menos distante da origem
+A menor distância Euclidiana  deste ponto é de:2.23606797749979 
+O ponto(5, 4) é o mais distante da origem
+A maior distância Euclidiana  deste ponto é de:6.4031242374328485 
+Existem 2 ponto(s) no 1° quadrante
+Existem 2 ponto(s) no 2° quadrante
+Existem 2 ponto(s) no 3° quadrante
+Existem 2 ponto(s) no 4° quadrante
+Existem 0 ponto(s) no eixo das abscissas ou ordendas
+Existem 0 ponto(s) na origem
+Digite a posição inicial (x) do robô: 2
+Digite a osição inicial (y) do robô: 3
+Coloque o tempo de duração da Caminhada do robô: 7
+A posição final do robô é (6, 6)'''
